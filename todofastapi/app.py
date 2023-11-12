@@ -31,7 +31,7 @@ async def home(request: Request, db: Session = Depends(get_db)):
 
 @app.get("/items/{item_id}")
 async def read_item(item_id:int, db: Session = Depends(get_db)):# -> dict[str, Any]:
-    return {"item_id":item_id, "item": db.query(models.Todo).filter(models.Todo.id==item_id).first().title}
+    return {"item_id":item_id, "item": db.query(models.Todo).filter(models.Todo.id==item_id).first()}
 
 @app.post("/add")
 async def add(request: Request, title:str = Form(...), db:Session=Depends(get_db)):
