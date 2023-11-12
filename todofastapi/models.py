@@ -4,7 +4,7 @@ from database import Base
 
 
 class Todo(Base):
-    __tablename__="todos"
+    __tablename__: str="todos"
 
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String)
