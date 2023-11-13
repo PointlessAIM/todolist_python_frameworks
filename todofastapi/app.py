@@ -1,5 +1,4 @@
 from fastapi import FastAPI, Depends, Request, Form, status, HTTPException
-
 from starlette.responses import RedirectResponse
 from starlette.templating import Jinja2Templates
 
@@ -38,7 +37,8 @@ async def add(request: Request, title:str = Form(...), db:Session=Depends(get_db
     #checking if todo exists
     existing_todo = db.query(models.Todo).filter(models.Todo.title == title).first()
     if existing_todo:
-        return {"message": "Item with the same title already exists."}
+        message=("todo already exists",)
+        return templates.TemplateResponse("base.html", {"request": request, "alert": message})
     
     new_todo=models.Todo(title=title)
     try:

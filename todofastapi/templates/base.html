@@ -11,10 +11,16 @@
 </head>
 
 <body>
+    
     <div style="margin-top: 50px;" class="ui container">
         <h1 class="ui center aligned header">To Do App</h1>
 
         <form class="ui form" action="/add" method="POST">
+            {%if alert %}
+            {%for message in alert%}
+            <div class="ui orange message">{{message}}</div>
+            {%endfor%}
+            {%endif%}
             <div class="field">
                 <label>Todo Title</label>
                 <input type="text" name="title" placeholder="Enter Todo..."><br>
